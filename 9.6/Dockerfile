@@ -1,5 +1,4 @@
 FROM ubuntu:xenial
-MAINTAINER romeOz <serggalka@gmail.com>
 
 ENV OS_LOCALE="en_US.UTF-8" \
     DEBIAN_FRONTEND=noninteractive
