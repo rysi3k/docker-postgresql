@@ -21,7 +21,7 @@ PG_RESTORE=${PG_RESTORE:-}
 # set this env variable to true to enable a line in the
 # pg_hba.conf file to trust samenet.  this can be used to connect
 # from other containers on the same host without authentication
-PG_TRUST_LOCALNET=${PG_TRUST_LOCALNET:-false}
+PG_TRUST_LOCALNET=${PG_TRUST_LOCALNET:-true}
 
 DB_NAME=${DB_NAME:-}
 DB_USER=${DB_USER:-}
