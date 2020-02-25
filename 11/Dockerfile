@@ -10,7 +10,11 @@ ENV LANG=${OS_LOCALE} \
     PG_USER=postgres \
     PG_HOME=/var/lib/postgresql \
     PG_RUN_DIR=/run/postgresql \
-    PG_LOG_DIR=/var/log/postgresql
+    PG_LOG_DIR=/var/log/postgresql \
+    DB_NAME=awx \
+    DB_USER=awx \
+    DB_PASS=awxpass
+    
 
 ENV PG_CONF_DIR="/etc/postgresql/${PG_VERSION}/main" \
     PG_BIN_DIR="/usr/lib/postgresql/${PG_VERSION}/bin" \
