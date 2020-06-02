@@ -398,7 +398,7 @@ if [[ -f /tmp/.EMPTY_DB && ( -z ${PG_MODE} || ${PG_MODE} =~ ^master ) ]]; then
 
   rm -f /tmp/.EMPTY_DB
 fi
-
+update-ca-certificates
 echo "Starting PostgreSQL server..."
 exec start-stop-daemon --start --chuid ${PG_USER}:${PG_USER} --exec ${PG_BIN_DIR}/postgres -- \
   -D ${PG_DATA_DIR} -c config_file=${PG_CONF_DIR}/postgresql.conf -c timezone=${PG_TZ}
