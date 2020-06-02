@@ -32,7 +32,7 @@ RUN dpkg-reconfigure locales && apt-get install -y wget sudo gnupg \
 
 COPY entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
-CMD update-ca-certificates
+
 EXPOSE 5432/tcp
 VOLUME ["${PG_HOME}", "${PG_RUN_DIR}"]
 CMD ["/sbin/entrypoint.sh"]
