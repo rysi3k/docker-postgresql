@@ -15,8 +15,7 @@ ENV LANG=${OS_LOCALE} \
     DB_USER=awx \
     DB_PASS=awxpass
     
-RUN apt-get install -y systemd
-RUN timedatectl set-timezone UTC
+
 
 ENV PG_CONF_DIR="/etc/postgresql/${PG_VERSION}/main" \
     PG_BIN_DIR="/usr/lib/postgresql/${PG_VERSION}/bin" \
