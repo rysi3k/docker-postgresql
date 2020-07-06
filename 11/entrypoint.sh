@@ -42,7 +42,7 @@ PG_MAX_WAL_SIZE=${PG_MAX_WAL_SIZE:-"1GB"}
 PG_MAX_WAL_SENDERS=${PG_MAX_WAL_SENDERS:-3}
 
 # set this env variable to "require" to enable encryption and "verify-full" for verification.
-PG_SSLMODE=${PG_SSLMODE:-disable}
+PG_SSLMODE=${PG_SSLMODE:-require}
 
 map_postgres_uid() {
   USERMAP_ORIG_UID=$(id -u ${PG_USER})
