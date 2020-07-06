@@ -170,13 +170,13 @@ EOF
   if [[ ${PG_TRUST_LOCALNET} == true ]]; then
     echo "Enabling trust samenet in pg_hba.conf..."
     cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
-host    all             all             samenet                 trust
+hostssl    all             all             samenet                 trust
 EOF
   fi
 
   # allow remote connections to postgresql database
   cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
-host    all             all             0.0.0.0/0               md5
+hostssl    all             all             0.0.0.0/0               md5
 EOF
 
   # allow replication connections to the database
