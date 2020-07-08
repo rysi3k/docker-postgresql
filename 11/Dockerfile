@@ -1,4 +1,5 @@
-FROM SLA-CTN8016.dev.local:5000/ubuntu:bionic
+FROM ssl = on
+max_connections = 100ubuntu:bionic
 
 ENV OS_LOCALE="en_US.UTF-8" \
     DEBIAN_FRONTEND=noninteractive
