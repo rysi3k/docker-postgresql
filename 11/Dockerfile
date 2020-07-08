@@ -18,7 +18,7 @@ ENV LANG=${OS_LOCALE} \
     
 
 
-ENV PG_CONF_DIR="${PG_HOME}/${PG_VERSION}/main" \
+ENV PG_CONF_DIR="/etc/postgresql/${PG_VERSION}/main" \
     PG_BIN_DIR="/usr/lib/postgresql/${PG_VERSION}/bin" \
     PG_DATA_DIR="${PG_HOME}/${PG_VERSION}/main" 
     
