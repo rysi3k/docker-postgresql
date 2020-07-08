@@ -165,6 +165,8 @@ if [[ ! -f /tmp/.CONFIGURE_1  ]]; then
   # listen on all interfaces
   cat >> ${PG_CONF_DIR}/postgresql.conf <<EOF
 listen_addresses = '*'
+ssl = on
+max_connections = 100
 EOF
 
   if [[ ${PG_TRUST_LOCALNET} == true ]]; then
@@ -176,7 +178,8 @@ EOF
 
   # allow remote connections to postgresql database
   cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
-hostssl    all             all             0.0.0.0/0               md5
+local   all             all                                     trust
+hostssl    all             all             0.0.0.0/0               crt
 EOF
 
   # allow replication connections to the database
