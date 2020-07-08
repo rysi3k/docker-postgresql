@@ -1,4 +1,4 @@
-#!/bin/bash
+key#!/bin/bash
 
 set -e
 
@@ -179,7 +179,7 @@ EOF
   # allow remote connections to postgresql database
   cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
 local   all             all                                     trust
-hostssl    all             all             0.0.0.0/0               crt
+hostssl    all             all             0.0.0.0/0               cert
 EOF
 
   # allow replication connections to the database
