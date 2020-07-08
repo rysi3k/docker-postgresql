@@ -1,5 +1,4 @@
-FROM ssl = on
-max_connections = 100ubuntu:bionic
+FROM ubuntu:bionic
 
 ENV OS_LOCALE="en_US.UTF-8" \
     DEBIAN_FRONTEND=noninteractive
