@@ -14,8 +14,8 @@ ENV LANG=${OS_LOCALE} \
     PG_LOG_DIR=/var/log/postgresql \
     DB_NAME=awx \
     DB_USER=awx \
-    DB_PASS=awxpass \
-    PG_SSLMODE=require
+    DB_PASS=awxpass
+    
     
 
 
