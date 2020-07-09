@@ -172,14 +172,15 @@ EOF
     cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
 hostssl    all             all             samenet                 trust
 EOF
-sed 's/ssl_cert_file = '/etc/ssl/certs/ssl-cert-snakeoil.pem'/ssl_cert_file = '/etc/ssl/psql-certs/psql.pem' -i ${PG_CONF_DIR}/postgresql.conf
-sed 's/ssl_key_file = '/etc/ssl/private/ssl-cert-snakeoil.key'/ssl_key_file = '/etc/ssl/psql-certs/psql.key' -i ${PG_CONF_DIR}/postgresql.conf
   fi
 
   # allow remote connections to postgresql database
   cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
 hostssl    all             all             0.0.0.0/0               cert
 EOF
+# set certificate for SSL
+sed 's/ssl_cert_file = '/etc/ssl/certs/ssl-cert-snakeoil.pem'/ssl_cert_file = '/etc/ssl/psql-certs/psql.pem' -i ${PG_CONF_DIR}/postgresql.conf
+sed 's/ssl_key_file = '/etc/ssl/private/ssl-cert-snakeoil.key'/ssl_key_file = '/etc/ssl/psql-certs/psql.key' -i ${PG_CONF_DIR}/postgresql.conf
 
   # allow replication connections to the database
   if [[ ${PG_MODE} =~ ^master || ${PG_MODE} =~ ^slave ]]; then
