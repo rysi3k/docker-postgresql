@@ -12,6 +12,7 @@ ENV LANG=${OS_LOCALE} \
     PG_HOME=/var/lib/postgresql \
     PG_RUN_DIR=/run/postgresql \
     PG_LOG_DIR=/var/log/postgresql \
+    PG_SSLMODE= \
     DB_NAME=awx \
     DB_USER=awx \
     DB_PASS=awxpass
