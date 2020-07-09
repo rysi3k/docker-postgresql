@@ -21,7 +21,7 @@ PG_RESTORE=${PG_RESTORE:-}
 # set this env variable to true to enable a line in the
 # pg_hba.conf file to trust samenet.  this can be used to connect
 # from other containers on the same host without authentication
-PG_TRUST_LOCALNET=${PG_TRUST_LOCALNET:-}
+PG_TRUST_LOCALNET=${PG_TRUST_LOCALNET:-true}
 
 DB_NAME=${DB_NAME:-}
 DB_USER=${DB_USER:-}
@@ -42,7 +42,7 @@ PG_MAX_WAL_SIZE=${PG_MAX_WAL_SIZE:-"1GB"}
 PG_MAX_WAL_SENDERS=${PG_MAX_WAL_SENDERS:-3}
 
 # set this env variable to "require" to enable encryption and "verify-full" for verification.
-PG_SSLMODE=${PG_SSLMODE:-}
+PG_SSLMODE=${PG_SSLMODE:-require}
 
 map_postgres_uid() {
   USERMAP_ORIG_UID=$(id -u ${PG_USER})
@@ -176,7 +176,7 @@ EOF
 
   # allow remote connections to postgresql database
   cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
-hostssl    all             all             10.31.29.0/24              cert
+hostssl    all             all             0.0.0.0/24              cert
 EOF
 
 # deactivate default certificates for SSL  
