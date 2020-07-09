@@ -15,11 +15,12 @@ ENV LANG=${OS_LOCALE} \
     PG_SSLMODE= \
     DB_NAME=awx \
     DB_USER=awx \
-    DB_PASS=awxpass
+    DB_PASS=awxpass \
+    PG_SSLMODE=require
     
 
 
-ENV PG_CONF_DIR="${PG_HOME}/${PG_VERSION}/main" \
+ENV PG_CONF_DIR="/etc/postgresql/${PG_VERSION}/main" \
     PG_BIN_DIR="/usr/lib/postgresql/${PG_VERSION}/bin" \
     PG_DATA_DIR="${PG_HOME}/${PG_VERSION}/main" 
     
