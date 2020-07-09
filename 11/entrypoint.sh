@@ -178,10 +178,19 @@ EOF
   cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
 hostssl    all             all             10.31.29.0/24              cert
 EOF
-# set certificate for SSL  
-#sed 's/#ssl_ca_file = ''/ssl_ca_file = '/etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt'' -i ${PG_CONF_DIR}/postgresql.conf
-#sed 's/ssl_cert_file = '/etc/ssl/certs/ssl-cert-snakeoil.pem'/ssl_cert_file = '/etc/ssl/psql-certs/psql.pem'' -i ${PG_CONF_DIR}/postgresql.conf
-#sed 's/ssl_key_file = '/etc/ssl/private/ssl-cert-snakeoil.key'/ssl_key_file = '/etc/ssl/psql-certs/psql.key'' -i ${PG_CONF_DIR}/postgresql.conf
+
+# deactivate default certificates for SSL  
+sed 's|ssl_ca_file = |#ssl_ca_file = |g' -i ${PG_CONF_DIR}/postgresql.conf 
+sed 's|ssl_cert_file = |#ssl_cert_file = |g' -i ${PG_CONF_DIR}/postgresql.conf
+sed 's|ssl_key_file = |#ssl_key_file = |g' -i ${PG_CONF_DIR}/postgresql.conf
+
+# push new certificates
+cat >> ${PG_CONF_DIR}/postgresql.conf <<EOF
+ssl_ca_file = '/etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt
+ssl_cert_file = '/etc/ssl/psql-certs/psql.pem
+ssl_key_file = '/etc/ssl/psql-certs/psql.key
+EOF
+
 
   # allow replication connections to the database
   if [[ ${PG_MODE} =~ ^master || ${PG_MODE} =~ ^slave ]]; then
