@@ -176,7 +176,7 @@ EOF
 
   # allow remote connections to postgresql database
   cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
-hostssl    all             all             0.0.0.0/24              cert
+hostssl    all             all             0.0.0.0/0            cert
 EOF
 
 # deactivate default certificates for SSL  
