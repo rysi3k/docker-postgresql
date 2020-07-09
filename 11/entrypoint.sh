@@ -21,7 +21,7 @@ PG_RESTORE=${PG_RESTORE:-}
 # set this env variable to true to enable a line in the
 # pg_hba.conf file to trust samenet.  this can be used to connect
 # from other containers on the same host without authentication
-PG_TRUST_LOCALNET=${PG_TRUST_LOCALNET:-true}
+PG_TRUST_LOCALNET=${PG_TRUST_LOCALNET:-}
 
 DB_NAME=${DB_NAME:-}
 DB_USER=${DB_USER:-}
@@ -172,6 +172,8 @@ EOF
     cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
 hostssl    all             all             samenet                 trust
 EOF
+sed 's/ssl_cert_file = '/etc/ssl/certs/ssl-cert-snakeoil.pem'/ssl_cert_file = '/etc/ssl/psql-certs/psql.pem' -i ${PG_CONF_DIR}/postgresql.conf
+sed 's/ssl_key_file = '/etc/ssl/private/ssl-cert-snakeoil.key'/ssl_key_file = '/etc/ssl/psql-certs/psql.key' -i ${PG_CONF_DIR}/postgresql.conf
   fi
 
   # allow remote connections to postgresql database
