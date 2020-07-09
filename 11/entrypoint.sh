@@ -186,9 +186,9 @@ sed 's|ssl_key_file = |#ssl_key_file = |g' -i ${PG_CONF_DIR}/postgresql.conf
 
 # push new certificates
 cat >> ${PG_CONF_DIR}/postgresql.conf <<EOF
-ssl_ca_file = '/etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt
-ssl_cert_file = '/etc/ssl/psql-certs/psql.pem
-ssl_key_file = '/etc/ssl/psql-certs/psql.key
+ssl_ca_file = '/etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt'
+ssl_cert_file = '/etc/ssl/psql-certs/psql.pem'
+ssl_key_file = '/etc/ssl/psql-certs/psql.key'
 EOF
 
 
