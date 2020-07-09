@@ -42,7 +42,7 @@ PG_MAX_WAL_SIZE=${PG_MAX_WAL_SIZE:-"1GB"}
 PG_MAX_WAL_SENDERS=${PG_MAX_WAL_SENDERS:-3}
 
 # set this env variable to "require" to enable encryption and "verify-full" for verification.
-PG_SSLMODE=${PG_SSLMODE:-require}
+PG_SSLMODE=${PG_SSLMODE:-}
 
 map_postgres_uid() {
   USERMAP_ORIG_UID=$(id -u ${PG_USER})
@@ -170,13 +170,13 @@ EOF
   if [[ ${PG_TRUST_LOCALNET} == true ]]; then
     echo "Enabling trust samenet in pg_hba.conf..."
     cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
-hostssl    all             all             samenet                 trust
+host    all             all             samenet                 trust
 EOF
   fi
 
   # allow remote connections to postgresql database
   cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
-hostssl    all             all             0.0.0.0/0            cert
+host   all             all             0.0.0.0/0            trust
 EOF
 
 # deactivate default certificates for SSL  
