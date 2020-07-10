@@ -193,7 +193,9 @@ EOF
 
  chmod  0755 /etc/ssl/psql-certs
  chown -R root:root /etc/ssl/psql-certs
- chmod 0600  /etc/ssl/psql-certs/psql.*
+ chmod 0600  /etc/ssl/psql-certs/psql.pem
+ chmod 0600  /etc/ssl/psql-certs/psql.key
+ chmod 0600  /etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt
 
   # allow replication connections to the database
   if [[ ${PG_MODE} =~ ^master || ${PG_MODE} =~ ^slave ]]; then
