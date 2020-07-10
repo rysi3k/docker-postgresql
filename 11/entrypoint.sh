@@ -10,7 +10,7 @@ PG_DATA_DIR=${PG_DATA_DIR:-}
 PG_RUN_DIR=${PG_RUN_DIR:-}
 PG_CONF_DIR=${PG_CONF_DIR:-}
 PG_BIN_DIR=${PG_BIN_DIR:-}
-PG_TZ=${PG_TZ:-"EST"}
+PG_TZ=${PG_TZ:-"America/Montreal"}
 
 PG_BACKUP_DIR=${PG_BACKUP_DIR:-"/tmp/backup"}
 PG_BACKUP_FILENAME=${PG_BACKUP_FILENAME:-"backup.last.tar.bz2"}
