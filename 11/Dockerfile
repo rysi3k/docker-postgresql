@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM SLA-CTN8016.dev.local:5000/ubuntu:latest
 
 ENV OS_LOCALE="en_US.UTF-8" \
     DEBIAN_FRONTEND=noninteractive
@@ -17,7 +17,8 @@ ENV LANG=${OS_LOCALE} \
     PG_LOG_DIR=/var/log/postgresql \
     DB_NAME=awx \
     DB_USER=awx \
-    DB_PASS=awxpass
+    DB_PASS=awxpass \
+    PG_SSLMODE=off
     
     
 
