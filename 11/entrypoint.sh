@@ -192,7 +192,7 @@ ssl_key_file = '/etc/ssl/psql-certs/psql.key'
 EOF
 
  chmod  0755 /etc/ssl/psql-certs
- chown -R root:root /etc/ssl/psql-certs
+ chown -R root:ssl-cert /etc/ssl/psql-certs
  chmod 0600  /etc/ssl/psql-certs/psql.pem
  chmod 0600  /etc/ssl/psql-certs/psql.key
  chmod 0600  /etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt
