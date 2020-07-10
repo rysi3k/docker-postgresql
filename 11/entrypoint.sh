@@ -180,19 +180,23 @@ host   all             all             0.0.0.0/0            trust
 EOF
 
 # deactivate default certificates for SSL  
+sed 's|ssl = on|#ssl = |g' -i ${PG_CONF_DIR}/postgresql.conf
 sed 's|ssl_ca_file = |#ssl_ca_file = |g' -i ${PG_CONF_DIR}/postgresql.conf 
 sed 's|ssl_cert_file = |#ssl_cert_file = |g' -i ${PG_CONF_DIR}/postgresql.conf
 sed 's|ssl_key_file = |#ssl_key_file = |g' -i ${PG_CONF_DIR}/postgresql.conf
 
 # push new certificates
 #cat >> ${PG_CONF_DIR}/postgresql.conf <<EOF
+#ssl = on
+#ssl = off
 #ssl_ca_file = '/etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt'
 #ssl_cert_file = '/etc/ssl/psql-certs/psql.pem'
 #ssl_key_file = '/etc/ssl/psql-certs/psql.key'
 #EOF
 
- #chmod  0755 /etc/ssl/psql-certs
- #chown -R root:ssl-cert /etc/ssl/psql-certs
+ chmod  0710 /etc/ssl/psql-certs
+ chmod  0640 /etc/ssl/psql-certs/*
+ chown -R root:ssl-cert /etc/ssl/psql-certs
  #chmod 0600  /etc/ssl/psql-certs/psql.pem
  #chmod 0600  /etc/ssl/psql-certs/psql.key
  #chmod 0600  /etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt
@@ -419,4 +423,5 @@ fi
 
 echo "Starting PostgreSQL server..."
 exec start-stop-daemon --start --chuid ${PG_USER}:${PG_USER} --exec ${PG_BIN_DIR}/postgres -- \
-  -D ${PG_DATA_DIR} -c config_file=${PG_CONF_DIR}/postgresql.conf -c timezone=UTC
+  -D ${PG_DATA_DIR} -c config_file=${PG_CONF_DIR}/postgresql.conf -c timezone=${PG_TZ} -c ssl=on -c ssl_cert_file=/etc/ssl/psql-certs/server.pem -c ssl_key_file=/etc/ssl/psql-certs/server.key
+  
