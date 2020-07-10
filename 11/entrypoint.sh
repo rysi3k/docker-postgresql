@@ -185,17 +185,17 @@ sed 's|ssl_cert_file = |#ssl_cert_file = |g' -i ${PG_CONF_DIR}/postgresql.conf
 sed 's|ssl_key_file = |#ssl_key_file = |g' -i ${PG_CONF_DIR}/postgresql.conf
 
 # push new certificates
-cat >> ${PG_CONF_DIR}/postgresql.conf <<EOF
-ssl_ca_file = '/etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt'
-ssl_cert_file = '/etc/ssl/psql-certs/psql.pem'
-ssl_key_file = '/etc/ssl/psql-certs/psql.key'
-EOF
+#cat >> ${PG_CONF_DIR}/postgresql.conf <<EOF
+#ssl_ca_file = '/etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt'
+#ssl_cert_file = '/etc/ssl/psql-certs/psql.pem'
+#ssl_key_file = '/etc/ssl/psql-certs/psql.key'
+#EOF
 
- chmod  0755 /etc/ssl/psql-certs
- chown -R root:ssl-cert /etc/ssl/psql-certs
- chmod 0600  /etc/ssl/psql-certs/psql.pem
- chmod 0600  /etc/ssl/psql-certs/psql.key
- chmod 0600  /etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt
+ #chmod  0755 /etc/ssl/psql-certs
+ #chown -R root:ssl-cert /etc/ssl/psql-certs
+ #chmod 0600  /etc/ssl/psql-certs/psql.pem
+ #chmod 0600  /etc/ssl/psql-certs/psql.key
+ #chmod 0600  /etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt
 
   # allow replication connections to the database
   if [[ ${PG_MODE} =~ ^master || ${PG_MODE} =~ ^slave ]]; then
