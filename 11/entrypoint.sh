@@ -191,6 +191,9 @@ ssl_cert_file = '/etc/ssl/psql-certs/psql.pem'
 ssl_key_file = '/etc/ssl/psql-certs/psql.key'
 EOF
 
+ chmod  0755 /etc/ssl/psql-certs
+ chown -R root:root /etc/ssl/psql-certs
+ chmod 0600  /etc/ssl/psql-certs/psql.*
 
   # allow replication connections to the database
   if [[ ${PG_MODE} =~ ^master || ${PG_MODE} =~ ^slave ]]; then
