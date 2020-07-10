@@ -5,7 +5,7 @@ ENV OS_LOCALE="en_US.UTF-8" \
 RUN apt-get update && apt-get install -y locales && locale-gen ${OS_LOCALE}
 RUN apt-get update && apt-get install -y vim
 
-ARG os_timezone="America/Montreal"
+ARG os_timezone="UTC"
 
 ENV LANG=${OS_LOCALE} \
     LANGUAGE=${OS_LOCALE} \
