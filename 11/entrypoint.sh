@@ -174,9 +174,12 @@ host    all             all             samenet                 trust
 EOF
   fi
 
+# deactivate all connections
+sed 's|host |#host  |g' -i ${PG_CONF_DIR}/pg_hba.conf
+
   # allow remote connections to postgresql database
   cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
-host   all             all             0.0.0.0/0            trust
+hostssl   all             all             0.0.0.0/0            cert
 EOF
 
 # deactivate default certificates for SSL  
@@ -421,7 +424,9 @@ if [[ -f /tmp/.EMPTY_DB && ( -z ${PG_MODE} || ${PG_MODE} =~ ^master ) ]]; then
   rm -f /tmp/.EMPTY_DB
 fi
 
-echo "Starting PostgreSQL server..."
+echo "Starting PostgreSQL server..."-c ssl_ca_file=/etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt
+
 exec start-stop-daemon --start --chuid ${PG_USER}:${PG_USER} --exec ${PG_BIN_DIR}/postgres -- \
-  -D ${PG_DATA_DIR} -c config_file=${PG_CONF_DIR}/postgresql.conf -c timezone=${PG_TZ} -c ssl=on -c ssl_cert_file=/etc/ssl/psql-certs/server.pem -c ssl_key_file=/etc/ssl/psql-certs/server.key
+  -D ${PG_DATA_DIR} -c config_file=${PG_CONF_DIR}/postgresql.conf -c timezone=${PG_TZ} -c ssl=on -c ssl_cert_file=/etc/ssl/psql-certs/server.pem -c ssl_key_file=/etc/ssl/psql-certs/server.key -c ssl_ca_file=/etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt
+ 
   
