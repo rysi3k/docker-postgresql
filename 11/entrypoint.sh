@@ -179,7 +179,7 @@ sed 's|host |#host  |g' -i ${PG_CONF_DIR}/pg_hba.conf
 
   # allow remote connections to postgresql database
   cat >> ${PG_CONF_DIR}/pg_hba.conf <<EOF
-hostssl   all             all             0.0.0.0/0            cert
+hostssl   all             all             0.0.0.0/0            md5
 EOF
 
 # deactivate default certificates for SSL  
@@ -192,7 +192,7 @@ sed 's|ssl_key_file = |#ssl_key_file = |g' -i ${PG_CONF_DIR}/postgresql.conf
 #cat >> ${PG_CONF_DIR}/postgresql.conf <<EOF
 #ssl = on
 #ssl = off
-#ssl_ca_file = '/etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt'
+#ssl_ca_file = '/etc/ssl/psql-certs/root.crt'
 #ssl_cert_file = '/etc/ssl/psql-certs/psql.pem'
 #ssl_key_file = '/etc/ssl/psql-certs/psql.key'
 #EOF
@@ -200,9 +200,7 @@ sed 's|ssl_key_file = |#ssl_key_file = |g' -i ${PG_CONF_DIR}/postgresql.conf
  chmod  0710 /etc/ssl/psql-certs
  chmod  0640 /etc/ssl/psql-certs/*
  chown -R root:ssl-cert /etc/ssl/psql-certs
- #chmod 0600  /etc/ssl/psql-certs/psql.pem
- #chmod 0600  /etc/ssl/psql-certs/psql.key
- #chmod 0600  /etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt
+
 
   # allow replication connections to the database
   if [[ ${PG_MODE} =~ ^master || ${PG_MODE} =~ ^slave ]]; then
@@ -424,7 +422,7 @@ if [[ -f /tmp/.EMPTY_DB && ( -z ${PG_MODE} || ${PG_MODE} =~ ^master ) ]]; then
   rm -f /tmp/.EMPTY_DB
 fi
 
-echo "Starting PostgreSQL server..."-c ssl_ca_file=/etc/ssl/psql-certs/AMF-AUTH-EXT-CA.crt
+echo "Starting PostgreSQL server..."
 
 exec start-stop-daemon --start --chuid ${PG_USER}:${PG_USER} --exec ${PG_BIN_DIR}/postgres -- \
   -D ${PG_DATA_DIR} -c config_file=${PG_CONF_DIR}/postgresql.conf -c timezone=${PG_TZ} 
