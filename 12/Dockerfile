@@ -1,5 +1,7 @@
 FROM ubuntu:bionic
 
+ENV http_proxy http://10.249.120.90:8080
+ENV https_proxy http://10.249.120.90:8080
 ENV OS_LOCALE="en_US.UTF-8" \
     DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y locales && locale-gen ${OS_LOCALE}
