@@ -1,4 +1,4 @@
-FROM ubuntu:bionic
+FROM localhost:5000/ubuntu-cd
 
 ENV OS_LOCALE="en_US.UTF-8" \
     DEBIAN_FRONTEND=noninteractive
