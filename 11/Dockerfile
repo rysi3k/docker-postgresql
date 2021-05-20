@@ -1,5 +1,7 @@
 FROM ubuntu:bionic
 
+ENV http_proxy http://10.249.120.90:8080
+ENV https_proxy http://10.249.120.90:8080
 ENV OS_LOCALE="en_US.UTF-8" \
     DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y locales && locale-gen ${OS_LOCALE}
@@ -38,7 +40,7 @@ RUN dpkg-reconfigure locales && apt-get install -y wget sudo gnupg \
  && rm -rf /var/lib/apt/lists/* \
  && touch /tmp/.EMPTY_DB
 
-COPY entrypoint.sh /sbin/entrypoint.sh
+COPY 11/entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
 
 EXPOSE 5432/tcp
