@@ -1,4 +1,4 @@
-FROM localhost:5000/ubuntu-cd
+FROM 10.250.35.217:5000/ubuntu-cd
 
 ENV OS_LOCALE="en_US.UTF-8" \
     DEBIAN_FRONTEND=noninteractive
