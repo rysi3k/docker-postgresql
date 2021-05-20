@@ -28,7 +28,7 @@ RUN dpkg-reconfigure locales && apt-get install -y wget sudo gnupg \
  && rm -rf /var/lib/apt/lists/* \
  && touch /tmp/.EMPTY_DB
 
-COPY entrypoint.sh /sbin/entrypoint.sh
+COPY 12/entrypoint.sh /sbin/entrypoint.sh
 RUN chmod 755 /sbin/entrypoint.sh
 
 EXPOSE 5432/tcp
