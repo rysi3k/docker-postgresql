@@ -1,4 +1,4 @@
-FROM zigot2/ubuntu-cd
+FROM zigot2/ubuntu-cd:latest
 
 ENV OS_LOCALE="en_US.UTF-8" \
     DEBIAN_FRONTEND=noninteractive
