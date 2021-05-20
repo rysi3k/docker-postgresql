@@ -1,4 +1,4 @@
-FROM duchri67/ubuntu-cd
+FROM ubuntu:bionic
 
 ENV OS_LOCALE="en_US.UTF-8" \
     DEBIAN_FRONTEND=noninteractive
