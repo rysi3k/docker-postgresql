@@ -197,9 +197,9 @@ sed 's|ssl_key_file = |#ssl_key_file = |g' -i ${PG_CONF_DIR}/postgresql.conf
 #ssl_key_file = '/etc/ssl/psql-certs/psql.key'
 #EOF
 
- chmod  0710 /etc/ssl/psql-certs
- chmod  0640 /etc/ssl/psql-certs/*
- chown -R root:ssl-cert /etc/ssl/psql-certs
+ #chmod  0710 /etc/ssl/psql-certs
+ #chmod  0640 /etc/ssl/psql-certs/*
+ #chown -R root:ssl-cert /etc/ssl/psql-certs
 
 
   # allow replication connections to the database
