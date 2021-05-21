@@ -340,7 +340,7 @@ if [[ ! -d ${PG_DATA_DIR} ]]; then
 
   echo "Initializing database..."
   sudo -Hu ${PG_USER} ${PG_BIN_DIR}/initdb --pgdata=${PG_DATA_DIR} \
-    --username=${PG_USER} --encoding=unicode --auth=trust >/dev/null
+    --username=${PG_USER} --encoding=unicode --auth=trust #>/dev/null
   touch /tmp/.EMPTY_DB
 fi
 
